@@ -1,0 +1,48 @@
+.back-btn-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    color: var(--text-main, #1e293b);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    width: fit-content;
+    z-index: 10;
+}
+
+.back-btn-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.back-btn-container:hover .back-icon {
+    transform: scale(1.2);
+}
+
+.back-label {
+    letter-spacing: 0.5px;
+}
+
+/* Specific styling for dark background sections */
+.dark-back-btn {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.dark-back-btn:hover {
+    background: rgba(0, 0, 0, 0.3);
+}

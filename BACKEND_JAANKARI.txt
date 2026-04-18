@@ -1,0 +1,52 @@
+# MakeUsTrip - Backend Details (Backend ki Poori Jankari)
+
+Yeh file MakeUsTrip website ke backend me kya-kya use hua hai aur wo sab kaise kaam karte hain, uski poori detail deti hai.
+
+---
+
+## 1. Core Technologies aur Packages
+Backend poori tarah se **Node.js** aur **Express.js** framework par bana hai. Niche un sabhi main packages ki list hai jo `package.json` me install kiye gaye hain:
+
+- **Express (`express`)**: Yeh main web framework hai jo server banane aur API routes handle karne ke kaam aata hai.
+- **Mongoose (`mongoose`)**: MongoDB database se connect karne aur models (jaise User, Deal) ke zariye data save, update ya delete karne ke liye ise use kiya gaya hai.
+- **Bcrypt.js (`bcryptjs`)**: Iska use user ke password ko encrypt (hash) karne ke liye hota hai taaki password database me secure rahe aur koi direct read na kar sake.
+- **JSON Web Token (`jsonwebtoken`)**: Yeh user authentication (login/register) ke liye hai. Login karne par ek secure token banta hai jo user ke session ko maintain rakhta hai.
+- **Cloudinary (`cloudinary`)**: Website par jo bhi images (jaise deals ki photo) upload hoti hain, wo yahan cloud storage me save hoti hain taaki fast load ho sakein.
+- **Multer (`multer`)**: Frontend se aane wali images/files ko backend me receive karke Cloudinary par upload karne se pehle handle karne ke kaam aata hai.
+- **Cors (`cors`)**: Cross-Origin Resource Sharing ko enable karta hai. Matlab frontend (React) aur backend (Node) alag-alag port par hone ke bawajood bina block hue ek dusre se baat kar sakte hain.
+- **Dotenv (`dotenv`)**: Secret credentials jaise Database URL, JWT Secret aur Cloudinary API keys ko `.env` file se secure tarah se load karta hai.
+
+---
+
+## 2. Database Models (Collections)
+MongoDB me data ko properly store karne ke liye alag-alag models banaye gaye hain:
+
+- **User Model (`User.js`)**: User ki saari details (naam, email, phone, hashed password, role - 'user' ya 'admin', aur reward points) isme save hoti hain.
+- **Deal Model (`Deal.js`)**: Travel deals (flight, hotel, bus, train) ki detail jaise price, discount, rating, image, aur location idhar store hoti hai.
+- **Booking Model (`Booking.js`)**: User jo bhi booking karta hai, uski saari details yahan rehti hai (passengers, total amount, taxes, payment status, pnr/booking ref wagaira).
+- **Ticket Model (`Ticket.js`)**: Customer support ke liye jo tickets (refund, issues) raise hoti hain, wo isme save hoti hain jinka admin reply kar sakta hai.
+- **GroupTrip Model (`GroupTrip.js`)**: Agar multiple log ek group vacation plan kar rahe hain, toh unki inquiry detail (budget, size, type) isme aati hai.
+- **Story & Destination Models**: Users ki travel stories experience aur destinations ki basic info yahan store hoti hai.
+
+---
+
+## 3. Routes aur API Endpoints
+Backend ko features ke hisaab se alag-alag routes me baanta gaya hai (`routes` folder):
+
+- **Authentication (`/api/auth`)**: Login, Signup aur profile details check karne ki API idhar hai.
+- **Deals (`/api/deals`)**: Deals ko fetch karna, filter/search karna, ya admin ke through nayi deal add karne ka kaam yahan hota hai.
+- **Bookings (`/api/bookings`)**: Booking banane, user ki past bookings dikhane aur unka status update karne ki APIs hain.
+- **Admin Dashboard (`/api/admin`)**: Sirf 'admin' users ke liye dashboard analytics, users ko manage karna, aur saari bookings/tickets dekhne ke liye is route ka use hota hai. (Isme `adminAuth` middleware laga hai).
+- **Chatbot (`/api/chatbot`)**: Pre-defined Q&A system hai. User koi question type karta hai aur ye route best matching answer return karta hai (jaise refund policy, ya booking process).
+- **File Upload (`/api/upload`)**: Multer+Cloudinary API ka combo yahan chalata hai, jisse image upload hoti hai aur image ka URL return hota hai.
+- **Customer Support (`/api/tickets`)**: Support tickets create aur manage karne ki APIs hain.
+
+---
+
+## 4. Middleware aur Security
+- **Auth Middleware (`auth.js`)**: 
+  1. `auth`: Har authorized request se pehle check karta hai ki user ka JWT token valid hai ya nahi (yaani user logged in hai ya nahi).
+  2. `adminAuth`: Check karta hai ki request karne wala user sach me 'admin' hai ya nahi. Agar normal user try karega toh isse 'Admin access required' ka error de dega jisse system secure rehta hai.
+
+## Summary
+Yeh backend properly structured REST API architecture par bana hai. Frontend react se request aati hai, Express server pehle routes aur usme lage auth middlewares ke zariye request verify karta hai, fir Mongoose ke through Database se data laata ya save karta hai, aur JSON format me final result frontend ko bhej deta hai.

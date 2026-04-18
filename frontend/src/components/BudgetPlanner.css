@@ -1,0 +1,287 @@
+/* ============================================
+   BUDGET PLANNER – PREMIUM REDESIGN
+   ============================================ */
+
+.budget-planner-card {
+    margin-top: 2rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(37, 99, 235, 0.12), 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid rgba(37, 99, 235, 0.08);
+}
+
+.budget-planner-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.budget-planner-header h2 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--secondary, #1e293b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.budget-planner-header p {
+    color: var(--text-light, #64748b);
+    margin-top: 0.4rem;
+    font-size: 1rem;
+}
+
+/* ---- Input Row ---- */
+.budget-input-group {
+    display: flex;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.budget-input-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+.budget-currency {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light, #64748b);
+    font-weight: 700;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+.budget-input-wrapper .form-input {
+    padding-left: 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   DESTINATION CARDS – 4-COL GRID
+   ============================================ */
+.destinations-section {
+    margin-top: 1rem;
+}
+
+.destinations-section h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--secondary, #1e293b);
+    margin-bottom: 1.25rem;
+}
+
+/* Grid instead of horizontal scroll */
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+/* Each card: square via aspect-ratio */
+.destination-card {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1 / 1;           /* perfect square */
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.32s ease;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+}
+
+.destination-card:hover {
+    transform: translateY(-6px) scale(1.025);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+}
+
+/* Gradient overlay for text legibility */
+.destination-card .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.72) 0%,
+        rgba(0, 0, 0, 0.18) 55%,
+        rgba(0, 0, 0, 0.0) 100%
+    );
+    transition: background 0.3s ease;
+    z-index: 1;
+}
+
+.destination-card:hover .overlay {
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.08) 55%,
+        rgba(0, 0, 0, 0.0) 100%
+    );
+}
+
+/* Card text */
+.destination-card h3 {
+    position: relative;
+    z-index: 2;
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.2rem;
+    padding: 0 0.75rem;
+}
+
+.destination-card p {
+    position: relative;
+    z-index: 2;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 0.85rem;
+    font-weight: 500;
+}
+
+/* "Explore" pill tag at top-right */
+.destination-card::after {
+    content: "Explore →";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    background: rgba(255,255,255,0.22);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: background 0.2s;
+}
+
+.destination-card:hover::after {
+    background: rgba(37,99,235,0.75);
+}
+
+/* ---- Tablet: 2 per row ---- */
+@media (max-width: 900px) {
+    .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ---- Mobile: 1 per row ---- */
+@media (max-width: 540px) {
+    .destinations-grid {
+        grid-template-columns: 1fr;
+    }
+    .destination-card {
+        aspect-ratio: 16 / 9;   /* landscape on mobile feels better */
+        border-radius: 14px;
+    }
+    .budget-input-group {
+        flex-direction: column;
+    }
+}
+
+/* ============================================
+   RESULTS AFTER SELECTING A DESTINATION
+   ============================================ */
+.budget-results {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.budget-result-category {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.category-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-light, #64748b);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding-left: 0.75rem;
+    border-left: 4px solid var(--primary, #2563eb);
+    margin-bottom: 0.25rem;
+}
+
+/* Deal cards inside budget results scroll horizontally */
+.deals-scroll-container {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+    scroll-snap-type: x mandatory;
+}
+.deals-scroll-container::-webkit-scrollbar { height: 4px; }
+.deals-scroll-container::-webkit-scrollbar-thumb { background: var(--border, #e2e8f0); border-radius: 8px; }
+
+.deals-scroll-container .deal-card {
+    min-width: 270px;
+    max-width: 270px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    border-radius: 14px;
+}
+
+.best-pick-card {
+    height: 100%;
+}
+
+/* ---- No Results ---- */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-light, #64748b);
+}
+
+.no-results span {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* ---- Back Button ---- */
+.back-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary, #2563eb);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px 20px;
+    background: #fff;
+    border: 2px solid var(--border, #e2e8f0);
+    border-radius: 50px;
+    transition: all 0.2s ease;
+    font-size: 0.92rem;
+}
+
+.back-nav:hover {
+    border-color: var(--primary, #2563eb);
+    background: #eff6ff;
+    transform: translateX(-4px);
+}

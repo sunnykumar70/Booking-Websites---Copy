@@ -1,0 +1,141 @@
+.auth-page {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fff7ed, #eff6ff);
+    padding: 40px 16px;
+}
+
+.auth-card {
+    max-width: 440px;
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .1);
+    padding: 40px;
+}
+
+.auth-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.auth-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1f2937;
+}
+
+.auth-brand span {
+    color: #f97316;
+}
+
+.auth-card h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.auth-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.auth-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.auth-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+.auth-divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.auth-divider span {
+    position: relative;
+    background: #fff;
+    padding: 0 12px;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.auth-social {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.social-btn {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    transition: all .2s;
+}
+
+.social-btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.auth-switch {
+    text-align: center;
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 20px;
+}
+
+.auth-switch a {
+    color: #f97316;
+    font-weight: 600;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
