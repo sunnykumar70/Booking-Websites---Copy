@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5001/api' });
+const API = axios.create({ baseURL: 'https://booking-websites-copy.onrender.com/api' });
 
 API.interceptors.request.use((config) => {
     const token = localStorage.getItem('admin_token');
