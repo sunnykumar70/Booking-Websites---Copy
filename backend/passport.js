@@ -6,7 +6,7 @@ const User = require('./models/User');
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID || 'your-google-client-id',
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'your-google-client-secret',
-    callbackURL: "http://localhost:5001/api/auth/google/callback"
+    callbackURL: "https://booking-websites-copy.onrender.com/api/auth/google/callback"
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
@@ -38,7 +38,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID || 'your-facebook-app-id',
     clientSecret: process.env.FACEBOOK_APP_SECRET || 'your-facebook-app-secret',
-    callbackURL: "http://localhost:5001/api/auth/facebook/callback",
+    callbackURL: "https://booking-websites-copy.onrender.com/api/auth/facebook/callback",
     profileFields: ['id', 'displayName', 'emails', 'photos']
   },
   async (accessToken, refreshToken, profile, done) => {

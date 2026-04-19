@@ -64,19 +64,19 @@ router.put('/profile', auth, async (req, res) => {
 // Google OAuth
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-router.get('/google/callback', passport.authenticate('google', { session: false, failureRedirect: 'http://localhost:3000/login?error=AuthFailed' }), (req, res) => {
+router.get('/google/callback', passport.authenticate('google', { session: false, failureRedirect: 'https://booking-websites-copy.onrender.com/login?error=AuthFailed' }), (req, res) => {
     const token = jwt.sign({ userId: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     const user = { id: req.user._id, name: req.user.name, email: req.user.email, role: req.user.role, avatar: req.user.avatar };
-    res.redirect(`http://localhost:3000/login?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
+    res.redirect(`https://booking-websites-copy.onrender.com/login?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
 });
 
 // Facebook OAuth
 router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 
-router.get('/facebook/callback', passport.authenticate('facebook', { session: false, failureRedirect: 'http://localhost:3000/login?error=AuthFailed' }), (req, res) => {
+router.get('/facebook/callback', passport.authenticate('facebook', { session: false, failureRedirect: 'https://booking-websites-copy.onrender.com/login?error=AuthFailed' }), (req, res) => {
     const token = jwt.sign({ userId: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     const user = { id: req.user._id, name: req.user.name, email: req.user.email, role: req.user.role, avatar: req.user.avatar };
-    res.redirect(`http://localhost:3000/login?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
+    res.redirect(`https://booking-websites-copy.onrender.com/login?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
 });
 
 module.exports = router;
